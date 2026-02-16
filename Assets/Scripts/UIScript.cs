@@ -9,6 +9,11 @@ public class UIScript : MonoBehaviour
     public GameObject car;
     public GameObject toggleLeft;
     public GameObject toggleRight;
+    public GameObject imageField;
+    public Sprite[] sprites;
+    public GameObject rotationSlider;
+    public GameObject ScaleSlider;
+
 
     public void ToggleBean(bool val)
     {
@@ -36,6 +41,24 @@ public class UIScript : MonoBehaviour
     {
         bean.transform.localScale = new Vector2 (value, 1);
     }
+
+    public void ChangeSprite(int val)
+    {
+        imageField.GetComponent<Image>().sprite = sprites[val];
+    }
+
+    public void Rotate()
+    {
+        float currentValue = rotationSlider.GetComponent<Slider>().value;
+        imageField.transform.rotation = Quaternion.Euler(0, 0, currentValue * 360);
+    }
+
+    public void Scale()
+    {
+        float currentValue = ScaleSlider.GetComponent<Slider>().value;
+        imageField.transform.localScale = new Vector2(1f * currentValue, 1f * currentValue);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
